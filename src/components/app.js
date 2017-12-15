@@ -1,9 +1,7 @@
 angular.module('video-player')
 
-.component('video', {
-  template: '<div>: {{$ctrl.name}}</div>',
-  bindings: {
-    name:'videoPlayer'
-  }
+.component('app', {
+  templateUrl: 'src/templates/app.html',
+  
 });
 //not sure about ctrl.name on line 4

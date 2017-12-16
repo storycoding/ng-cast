@@ -3,7 +3,12 @@ angular.module('video-player')
 .component('app', {
   controller: function() {
     this.data = exampleVideoData;
+    this.currentVideo = this.data[0]; // this is good
+    this.select = function(target) {
+      this.currentVideo = target;
+    };
   }, 
+
 
   template: `<div id="app container">
     <nav class="navbar">
@@ -11,11 +16,9 @@ angular.module('video-player')
         <search class="search-bar">
       </div>
     </nav>
-
       <div class="col-md-7">
-        <video-player class="video-player">
-      </div>
-        
+        <video-player class="video-player" current-video="$ctrl.currentVideo">
+      </div> 
       <div class="col-md-5">
         <video-list class="video-list">
       </div>
@@ -23,8 +26,3 @@ angular.module('video-player')
 </div>`
   
 });
-//not sure about ctrl.name on line 4
-
-// <video-player><h5><em>videoPlayer</em> component goes here</h5></video-player>
-// <search><h5><em>search</em> component goes here</h5></search>
-// <video-list><h5><em>videoList</em> component goes here</h5></video-list>

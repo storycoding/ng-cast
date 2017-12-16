@@ -1,5 +1,10 @@
 angular.module('video-player')
+
 .component('videoList', {
+  
+  bindings: {
+    data: '<'
+  },
   
   controller: function() {
     this.videoDataArray = exampleVideoData;
@@ -7,7 +12,8 @@ angular.module('video-player')
       
       // change the object source of videoPlayer to be
       console.log('video elements clicked!');
-      console.log(video);
+      // console.log('this: ', $(e.target));
+      console.log('index: ', this.index);
       // the same as the clicked thumbail
       
       
@@ -16,8 +22,8 @@ angular.module('video-player')
   
   template: `<ul class="video-list">
     <video-list-entry
-    playSelectedVideo="$ctrl.playSelectedVideo"
-     ng-click="$ctrl.playSelectedVideo()"
+      playSelectedVideo="$ctrl.playSelectedVideo"
+      ng-click="$ctrl.playSelectedVideo()"
       video="videoDataSample"
       index="$index"
       ng-repeat="videoDataSample in $ctrl.videoDataArray"

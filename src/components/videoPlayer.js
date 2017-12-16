@@ -2,11 +2,17 @@ angular.module('video-player')
 
 .component('videoPlayer', {
   
+  bindings: {
+    currentVideo: '<'
+  },
+  
   controller: function() {
-    this.data = exampleVideoData[0]; //replace this src with an object
-    this.videoId = 'https://www.youtube.com/embed/' + this.data.id.videoId;
-    this.videoTitle = this.data.snippet.title;
-    this.videoDescription = this.data.snippet.description;
+    
+    this.$onInit = function() {
+      this.videoId = 'https://www.youtube.com/embed/' + this.currentVideo.id.videoId;
+      this.videoTitle = this.currentVideo.snippet.title;
+      this.videoDescription = this.currentVideo.snippet.description;
+    };
   },
   
   template: `
@@ -21,3 +27,4 @@ angular.module('video-player')
   </div>
   `
 });
+

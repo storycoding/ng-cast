@@ -3,26 +3,27 @@ angular.module('video-player')
 .component('videoPlayer', {
   
   bindings: {
-    currentVideo: '<'
+    video: '<' // consider = for two way binding // easy updating
   },
   
   controller: function() {
+    console.log(this);
     
-    this.$onInit = function() {
-      this.videoId = 'https://www.youtube.com/embed/' + this.currentVideo.id.videoId;
-      this.videoTitle = this.currentVideo.snippet.title;
-      this.videoDescription = this.currentVideo.snippet.description;
+    this.videoUrl = function() {
+      console.log(this);
+      return `https://www.youtube.com/embed/${this.video.id.videoId}`;
     };
+    
   },
   
   template: `
     <div class="video-player">
       <div class="embed-responsive embed-responsive-16by9">
-        <iframe class="embed-responsive-item" src={{$ctrl.videoId}} allowFullScreen></iframe>
+        <iframe class="embed-responsive-item" src={{$ctrl.videoUrl()}} allowFullScreen></iframe>
       </div>
     <div class="video-player-details">
-      <h3>{{$ctrl.videoTitle}}</h3>
-      <div>{{$ctrl.videoDescription}}</div>
+      <h3>{{$ctrl.video.snippet.title}}</h3>
+      <div>{{$ctrl.video.snippet.description}}</div>
     </div>
   </div>
   `
